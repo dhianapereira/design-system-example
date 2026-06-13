@@ -1,0 +1,9 @@
+name: design_system_example
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.44.0"
+
+workspace:
+  - packages/design_system
