@@ -69,6 +69,9 @@ The button components are intentionally split between:
 
 Widgetbook app used to visualize Design System components in isolation.
 
+The component catalog is generated with `widgetbook_generator`, so use cases do
+not need to be manually registered in `main.dart`.
+
 Current use cases include:
 
 - `DSButton`;
@@ -95,6 +98,13 @@ Run Design System tests:
 flutter test packages/design_system
 ```
 
+Generate Widgetbook directories:
+
+```sh
+cd apps/widgetbook
+dart run build_runner build
+```
+
 Run Widgetbook locally:
 
 ```sh
@@ -108,6 +118,35 @@ Build Widgetbook for web:
 cd apps/widgetbook
 flutter build web
 ```
+
+## Widgetbook workflow
+
+To add a component to Widgetbook, create a use case function inside
+`apps/widgetbook/lib/use_cases` and annotate it with `@widgetbook.UseCase`.
+
+```dart
+@widgetbook.UseCase(
+  name: 'Primary',
+  type: DSButton,
+  path: '[Components]/Buttons',
+)
+Widget dsButtonPrimaryUseCase(BuildContext context) {
+  return DSButton(
+    label: 'Continue',
+    onPressed: () {},
+  );
+}
+```
+
+After adding or changing use cases, run:
+
+```sh
+cd apps/widgetbook
+dart run build_runner build
+```
+
+The generated file `apps/widgetbook/lib/main.directories.g.dart` should not be
+edited by hand.
 
 ## LICENSE
 

@@ -2,6 +2,9 @@
 
 Widgetbook app for visualizing the example Flutter Design System components.
 
+The directories are generated with `widgetbook_generator` from
+`@widgetbook.UseCase` annotations.
+
 ## Running locally
 
 ```sh
@@ -14,10 +17,32 @@ Then open:
 http://127.0.0.1:8080
 ```
 
-The current setup includes initial use cases for:
+## Adding use cases
 
-- `DSButton`;
-- `DSIconButton`.
+Create a file under `lib/use_cases` and annotate a public function with
+`@widgetbook.UseCase`.
+
+```dart
+@widgetbook.UseCase(
+  name: 'Primary',
+  type: DSButton,
+  path: '[Components]/Buttons',
+)
+Widget dsButtonPrimaryUseCase(BuildContext context) {
+  return DSButton(
+    label: 'Continue',
+    onPressed: () {},
+  );
+}
+```
+
+Then regenerate the Widgetbook directories:
+
+```sh
+dart run build_runner build
+```
+
+Do not edit `lib/main.directories.g.dart` manually.
 
 ## Build
 
