@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('DSButtonStyle.resolve', () {
+  group('DSButtonStyle.resolve - ', () {
     test('should return primary background when variant is primary', () {
       final style = DSButtonStyle.resolve(
         variant: DSButtonVariant.primary,
@@ -79,9 +79,38 @@ void main() {
 
       expect(style.disabledForegroundColor, DSColorScheme.light.textDisabled);
     });
+
+    test('should return medium size style when size is omitted', () {
+      final style = DSButtonStyle.resolve(
+        variant: DSButtonVariant.primary,
+        colors: DSColorScheme.light,
+      );
+
+      expect(style.sizeStyle.minHeight, DSSize.controlMd);
+    });
+
+    test('should return small size style when size is sm', () {
+      final style = DSButtonStyle.resolve(
+        variant: DSButtonVariant.primary,
+        colors: DSColorScheme.light,
+        size: DSButtonSize.sm,
+      );
+
+      expect(style.sizeStyle.minHeight, DSSize.controlSm);
+    });
+
+    test('should return large size style when size is lg', () {
+      final style = DSButtonStyle.resolve(
+        variant: DSButtonVariant.primary,
+        colors: DSColorScheme.light,
+        size: DSButtonSize.lg,
+      );
+
+      expect(style.sizeStyle.minHeight, DSSize.controlLg);
+    });
   });
 
-  group('DSButtonStyle.toFilledButtonStyle', () {
+  group('DSButtonStyle.toFilledButtonStyle - ', () {
     testWidgets('should resolve minimum size when style is filled', (
       tester,
     ) async {
@@ -92,7 +121,7 @@ void main() {
 
       expect(
         buttonStyle.minimumSize?.resolve({}),
-        const Size(DSSize.minTouchTarget, DSSize.minTouchTarget),
+        const Size(DSSize.controlMd, DSSize.controlMd),
       );
     });
 
@@ -106,7 +135,7 @@ void main() {
         buttonStyle.padding?.resolve({}),
         const EdgeInsets.symmetric(
           horizontal: DSSpacing.lg,
-          vertical: DSSpacing.md,
+          vertical: DSSpacing.sm,
         ),
       );
     });
@@ -125,7 +154,7 @@ void main() {
     });
   });
 
-  group('DSButtonStyle.toOutlinedButtonStyle', () {
+  group('DSButtonStyle.toOutlinedButtonStyle - ', () {
     testWidgets('should resolve minimum size when style is outlined', (
       tester,
     ) async {
@@ -136,7 +165,7 @@ void main() {
 
       expect(
         buttonStyle.minimumSize?.resolve({}),
-        const Size(DSSize.minTouchTarget, DSSize.minTouchTarget),
+        const Size(DSSize.controlMd, DSSize.controlMd),
       );
     });
 
@@ -169,7 +198,7 @@ void main() {
     });
   });
 
-  group('DSButtonStyle.toIconButtonStyle', () {
+  group('DSButtonStyle.toIconButtonStyle - ', () {
     testWidgets('should resolve fixed size when style is icon button', (
       tester,
     ) async {
@@ -180,7 +209,7 @@ void main() {
 
       expect(
         buttonStyle.fixedSize?.resolve({}),
-        const Size.square(DSSize.minTouchTarget),
+        const Size.square(DSSize.controlMd),
       );
     });
 
@@ -194,7 +223,7 @@ void main() {
 
       expect(
         buttonStyle.minimumSize?.resolve({}),
-        const Size.square(DSSize.minTouchTarget),
+        const Size.square(DSSize.controlMd),
       );
     });
 

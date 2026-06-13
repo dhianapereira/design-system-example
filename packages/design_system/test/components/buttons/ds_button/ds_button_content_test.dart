@@ -43,7 +43,13 @@ void main() {
 
       final row = tester.widget<Row>(find.byType(Row));
 
-      expect(row.children.first, isA<Icon>());
+      expect(
+        find.descendant(
+          of: find.byWidget(row.children.first),
+          matching: find.byIcon(Icons.add),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('should place icon last when icon position is end', (
@@ -59,7 +65,13 @@ void main() {
 
       final row = tester.widget<Row>(find.byType(Row));
 
-      expect(row.children.last, isA<Icon>());
+      expect(
+        find.descendant(
+          of: find.byWidget(row.children.last),
+          matching: find.byIcon(Icons.add),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('should render Column when icon position is top',
@@ -88,7 +100,13 @@ void main() {
 
       final column = tester.widget<Column>(find.byType(Column));
 
-      expect(column.children.first, isA<Icon>());
+      expect(
+        find.descendant(
+          of: find.byWidget(column.children.first),
+          matching: find.byIcon(Icons.add),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('should place icon last when icon position is bottom', (
@@ -104,7 +122,13 @@ void main() {
 
       final column = tester.widget<Column>(find.byType(Column));
 
-      expect(column.children.last, isA<Icon>());
+      expect(
+        find.descendant(
+          of: find.byWidget(column.children.last),
+          matching: find.byIcon(Icons.add),
+        ),
+        findsOneWidget,
+      );
     });
   });
 }

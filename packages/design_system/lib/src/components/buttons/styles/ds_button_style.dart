@@ -1,8 +1,8 @@
+import 'package:design_system/src/components/buttons/styles/ds_button_size.dart';
+import 'package:design_system/src/components/buttons/styles/ds_button_size_style.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_variant.dart';
 import 'package:design_system/src/foundations/ds_border_width.dart';
 import 'package:design_system/src/foundations/ds_radius.dart';
-import 'package:design_system/src/foundations/ds_size.dart';
-import 'package:design_system/src/foundations/ds_spacing.dart';
 import 'package:design_system/src/foundations/ds_typography.dart';
 import 'package:design_system/src/theme/ds_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ class DSButtonStyle {
     required this.foregroundColor,
     required this.disabledBackgroundColor,
     required this.disabledForegroundColor,
+    required this.sizeStyle,
     this.borderColor,
   });
 
@@ -20,11 +21,13 @@ class DSButtonStyle {
   final Color foregroundColor;
   final Color disabledBackgroundColor;
   final Color disabledForegroundColor;
+  final DSButtonSizeStyle sizeStyle;
   final Color? borderColor;
 
   static DSButtonStyle resolve({
     required DSButtonVariant variant,
     required DSColorScheme colors,
+    DSButtonSize size = DSButtonSize.md,
   }) {
     return switch (variant) {
       DSButtonVariant.primary => DSButtonStyle(
@@ -32,18 +35,21 @@ class DSButtonStyle {
           foregroundColor: colors.onPrimary,
           disabledBackgroundColor: colors.border,
           disabledForegroundColor: colors.textDisabled,
+          sizeStyle: DSButtonSizeStyle.resolve(size),
         ),
       DSButtonVariant.secondary => DSButtonStyle(
           backgroundColor: colors.secondary,
           foregroundColor: colors.onSecondary,
           disabledBackgroundColor: colors.border,
           disabledForegroundColor: colors.textDisabled,
+          sizeStyle: DSButtonSizeStyle.resolve(size),
         ),
       DSButtonVariant.outline => DSButtonStyle(
           backgroundColor: Colors.transparent,
           foregroundColor: colors.primary,
           disabledBackgroundColor: Colors.transparent,
           disabledForegroundColor: colors.textDisabled,
+          sizeStyle: DSButtonSizeStyle.resolve(size),
           borderColor: colors.primary,
         ),
     };
@@ -55,13 +61,13 @@ class DSButtonStyle {
       foregroundColor: foregroundColor,
       disabledBackgroundColor: disabledBackgroundColor,
       disabledForegroundColor: disabledForegroundColor,
-      minimumSize: const Size(
-        DSSize.minTouchTarget,
-        DSSize.minTouchTarget,
+      minimumSize: Size(
+        sizeStyle.minHeight,
+        sizeStyle.minHeight,
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: DSSpacing.lg,
-        vertical: DSSpacing.md,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeStyle.horizontalPadding,
+        vertical: sizeStyle.verticalPadding,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(DSRadius.md),
@@ -75,13 +81,13 @@ class DSButtonStyle {
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
       disabledForegroundColor: disabledForegroundColor,
-      minimumSize: const Size(
-        DSSize.minTouchTarget,
-        DSSize.minTouchTarget,
+      minimumSize: Size(
+        sizeStyle.minHeight,
+        sizeStyle.minHeight,
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: DSSpacing.lg,
-        vertical: DSSpacing.md,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeStyle.horizontalPadding,
+        vertical: sizeStyle.verticalPadding,
       ),
       side: BorderSide(
         color: borderColor ?? foregroundColor,
@@ -100,8 +106,8 @@ class DSButtonStyle {
       foregroundColor: foregroundColor,
       disabledBackgroundColor: disabledBackgroundColor,
       disabledForegroundColor: disabledForegroundColor,
-      fixedSize: const Size.square(DSSize.minTouchTarget),
-      minimumSize: const Size.square(DSSize.minTouchTarget),
+      fixedSize: Size.square(sizeStyle.iconButtonSize),
+      minimumSize: Size.square(sizeStyle.iconButtonSize),
       side: borderColor == null
           ? null
           : BorderSide(

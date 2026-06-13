@@ -1,7 +1,9 @@
 import 'package:design_system/src/components/buttons/ds_button/ds_button.dart';
+import 'package:design_system/src/components/buttons/styles/ds_button_size.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_style.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_variant.dart';
 import 'package:design_system/src/foundations/ds_motion.dart';
+import 'package:design_system/src/foundations/ds_size.dart';
 import 'package:design_system/src/theme/ds_theme_data.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,7 @@ class DSIconButton extends StatelessWidget {
     required this.semanticLabel,
     required this.onPressed,
     this.variant = DSButtonVariant.primary,
+    this.size = DSButtonSize.md,
     this.isLoading = false,
     this.loadingBuilder,
     this.animationBuilder,
@@ -31,6 +34,9 @@ class DSIconButton extends StatelessWidget {
   /// Visual treatment used by the button.
   final DSButtonVariant variant;
 
+  /// Dimensional treatment used by the button.
+  final DSButtonSize size;
+
   /// Replaces the icon with loading content and disables interaction.
   final bool isLoading;
 
@@ -45,37 +51,51 @@ class DSIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.dsTheme.colors;
-    final style = DSButtonStyle.resolve(variant: variant, colors: colors);
+    final style = DSButtonStyle.resolve(
+      variant: variant,
+      size: size,
+      colors: colors,
+    );
 
     return Semantics(
       button: true,
       enabled: _isEnabled,
       label: semanticLabel,
-      child: IconButton(
-        tooltip: semanticLabel,
-        onPressed: _isEnabled ? onPressed : null,
-        style: style.toIconButtonStyle(),
-        icon: AnimatedSwitcher(
-          duration: DSMotion.fast,
-          transitionBuilder:
-              animationBuilder ?? AnimatedSwitcher.defaultTransitionBuilder,
-          child: isLoading
-              ? KeyedSubtree(
-                  key: const ValueKey('loading'),
-                  child: loadingBuilder?.call(context, style.foregroundColor) ??
-                      SizedBox.square(
-                        dimension: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: style.foregroundColor,
-                        ),
-                      ),
-                )
-              : IconTheme.merge(
-                  key: const ValueKey('icon'),
-                  data: IconThemeData(color: style.foregroundColor),
-                  child: icon,
-                ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minHeight: DSSize.minTouchTarget,
+          minWidth: DSSize.minTouchTarget,
+        ),
+        child: IconButton(
+          tooltip: semanticLabel,
+          onPressed: _isEnabled ? onPressed : null,
+          style: style.toIconButtonStyle(),
+          icon: AnimatedSwitcher(
+            duration: DSMotion.fast,
+            transitionBuilder:
+                animationBuilder ?? AnimatedSwitcher.defaultTransitionBuilder,
+            child: isLoading
+                ? KeyedSubtree(
+                    key: const ValueKey('loading'),
+                    child:
+                        loadingBuilder?.call(context, style.foregroundColor) ??
+                            SizedBox.square(
+                              dimension: style.sizeStyle.iconSize,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: style.foregroundColor,
+                              ),
+                            ),
+                  )
+                : IconTheme.merge(
+                    key: const ValueKey('icon'),
+                    data: IconThemeData(
+                      color: style.foregroundColor,
+                      size: style.sizeStyle.iconSize,
+                    ),
+                    child: icon,
+                  ),
+          ),
         ),
       ),
     );

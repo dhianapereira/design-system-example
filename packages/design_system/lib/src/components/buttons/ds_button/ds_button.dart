@@ -1,5 +1,6 @@
 import 'package:design_system/src/components/buttons/ds_button/ds_button_content.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_icon_position.dart';
+import 'package:design_system/src/components/buttons/styles/ds_button_size.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_style.dart';
 import 'package:design_system/src/components/buttons/styles/ds_button_variant.dart';
 import 'package:design_system/src/foundations/ds_motion.dart';
@@ -20,6 +21,7 @@ class DSButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.variant = DSButtonVariant.primary,
+    this.size = DSButtonSize.md,
     this.icon,
     this.iconPosition = DSButtonIconPosition.start,
     this.isLoading = false,
@@ -37,6 +39,9 @@ class DSButton extends StatelessWidget {
 
   /// Visual treatment used by the button.
   final DSButtonVariant variant;
+
+  /// Dimensional treatment used by the button.
+  final DSButtonSize size;
 
   /// Optional icon rendered next to the label.
   final Widget? icon;
@@ -61,7 +66,11 @@ class DSButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.dsTheme.colors;
-    final style = DSButtonStyle.resolve(variant: variant, colors: colors);
+    final style = DSButtonStyle.resolve(
+      variant: variant,
+      size: size,
+      colors: colors,
+    );
     final child = AnimatedSwitcher(
       duration: DSMotion.fast,
       transitionBuilder:
@@ -79,6 +88,8 @@ class DSButton extends StatelessWidget {
               label: label,
               icon: icon,
               iconPosition: iconPosition,
+              iconSize: style.sizeStyle.iconSize,
+              gap: style.sizeStyle.gap,
             ),
     );
 

@@ -18,6 +18,12 @@ Widget dsIconButtonPlaygroundUseCase(BuildContext context) {
     options: DSButtonVariant.values,
     labelBuilder: (variant) => variant.name,
   );
+  final size = context.knobs.object.dropdown<DSButtonSize>(
+    label: 'Size',
+    options: DSButtonSize.values,
+    initialOption: DSButtonSize.md,
+    labelBuilder: (size) => size.name,
+  );
   final icon = context.knobs.object.dropdown<_IconButtonIcon>(
     label: 'Icon',
     options: _IconButtonIcon.values,
@@ -31,6 +37,7 @@ Widget dsIconButtonPlaygroundUseCase(BuildContext context) {
       icon: icon.widget,
       semanticLabel: semanticLabel,
       variant: variant,
+      size: size,
       isLoading: isLoading,
       onPressed: isDisabled || isLoading ? null : () {},
     ),
