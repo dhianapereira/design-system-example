@@ -7,3 +7,4 @@ environment:
 
 workspace:
   - packages/design_system
+  - apps/widgetbook
