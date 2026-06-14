@@ -1,3 +1,6 @@
+export 'src/components/badges/ds_badge/ds_badge.dart';
+export 'src/components/badges/styles/ds_badge_size.dart';
+export 'src/components/badges/styles/ds_badge_variant.dart';
 export 'src/components/buttons/ds_button/ds_button.dart';
 export 'src/components/buttons/ds_icon_button/ds_icon_button.dart';
 export 'src/components/buttons/styles/ds_button_icon_position.dart';

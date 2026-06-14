@@ -10,6 +10,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:design_system_widgetbook/use_cases/badges/ds_badge_use_cases.dart'
+    as _design_system_widgetbook_use_cases_badges_ds_badge_use_cases;
 import 'package:design_system_widgetbook/use_cases/buttons/ds_button_use_cases.dart'
     as _design_system_widgetbook_use_cases_buttons_ds_button_use_cases;
 import 'package:design_system_widgetbook/use_cases/buttons/ds_icon_button_use_cases.dart'
@@ -26,6 +28,22 @@ final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookCategory(
     name: 'Components',
     children: [
+      _widgetbook.WidgetbookFolder(
+        name: 'Badges',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'DSBadge',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Playground',
+                builder:
+                    _design_system_widgetbook_use_cases_badges_ds_badge_use_cases
+                        .dsBadgePlaygroundUseCase,
+              )
+            ],
+          )
+        ],
+      ),
       _widgetbook.WidgetbookFolder(
         name: 'Buttons',
         children: [
