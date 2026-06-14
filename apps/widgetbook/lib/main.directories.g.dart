@@ -14,6 +14,8 @@ import 'package:design_system_widgetbook/use_cases/buttons/ds_button_use_cases.d
     as _design_system_widgetbook_use_cases_buttons_ds_button_use_cases;
 import 'package:design_system_widgetbook/use_cases/buttons/ds_icon_button_use_cases.dart'
     as _design_system_widgetbook_use_cases_buttons_ds_icon_button_use_cases;
+import 'package:design_system_widgetbook/use_cases/dropdowns/ds_dropdown_use_cases.dart'
+    as _design_system_widgetbook_use_cases_dropdowns_ds_dropdown_use_cases;
 import 'package:design_system_widgetbook/use_cases/text/ds_text_use_cases.dart'
     as _design_system_widgetbook_use_cases_text_ds_text_use_cases;
 import 'package:design_system_widgetbook/use_cases/text_fields/ds_text_field_use_cases.dart'
@@ -49,6 +51,22 @@ final directories = <_widgetbook.WidgetbookNode>[
               )
             ],
           ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Dropdowns',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'DSDropdown',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Playground',
+                builder:
+                    _design_system_widgetbook_use_cases_dropdowns_ds_dropdown_use_cases
+                        .dsDropdownPlaygroundUseCase,
+              )
+            ],
+          )
         ],
       ),
       _widgetbook.WidgetbookFolder(
