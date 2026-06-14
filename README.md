@@ -12,26 +12,40 @@ Flutter Design System with:
 - responsive foundations;
 - Widgetbook documentation.
 
-## Monorepo structure
+## Requirements
+
+- Flutter 3.44.0
+- Dart >=3.6.0 <4.0.0
+- Melos 7.8.2 or newer
+
+## Structure
 
 ```txt
-design-system-example/
-  apps/
-    widgetbook/
-      lib/
-      web/
-      pubspec.yaml
+apps/
+  widgetbook/
+    lib/
+    web/
+    pubspec.yaml
 
-  packages/
-    design_system/
-      lib/
-      test/
-      pubspec.yaml
-
-  pubspec.yaml
-  README.md
+packages/
+  design_system/
+    lib/
+    test/
+    pubspec.yaml
 ```
 
-## LICENSE
+## Widgetbook deployment
+
+Widgetbook deployments are handled by GitHub Actions and GitHub Pages.
+
+The workflow runs when a tag matching `widgetbook-v*` is pushed, or when it is
+started manually from the Actions tab:
+
+```sh
+git tag widgetbook-v1.0.0
+git push origin widgetbook-v1.0.0
+```
+
+## License
 
 This project is licensed under the terms described in [LICENSE](./LICENSE).
