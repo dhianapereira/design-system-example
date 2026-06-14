@@ -16,6 +16,8 @@ import 'package:design_system_widgetbook/use_cases/buttons/ds_icon_button_use_ca
     as _design_system_widgetbook_use_cases_buttons_ds_icon_button_use_cases;
 import 'package:design_system_widgetbook/use_cases/text/ds_text_use_cases.dart'
     as _design_system_widgetbook_use_cases_text_ds_text_use_cases;
+import 'package:design_system_widgetbook/use_cases/text_fields/ds_text_field_use_cases.dart'
+    as _design_system_widgetbook_use_cases_text_fields_ds_text_field_use_cases;
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
 final directories = <_widgetbook.WidgetbookNode>[
@@ -60,6 +62,22 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _design_system_widgetbook_use_cases_text_ds_text_use_cases
                         .dsTextPlaygroundUseCase,
+              )
+            ],
+          )
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Text Fields',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'DSTextField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Playground',
+                builder:
+                    _design_system_widgetbook_use_cases_text_fields_ds_text_field_use_cases
+                        .dsTextFieldPlaygroundUseCase,
               )
             ],
           )

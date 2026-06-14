@@ -16,6 +16,8 @@ class DSColorScheme {
     required this.onPrimary,
     required this.secondary,
     required this.onSecondary,
+    required this.error,
+    required this.onError,
   });
 
   final Color background;
@@ -30,6 +32,8 @@ class DSColorScheme {
   final Color onPrimary;
   final Color secondary;
   final Color onSecondary;
+  final Color error;
+  final Color onError;
 
   /// Default color scheme for light mode.
   static const light = DSColorScheme(
@@ -43,6 +47,8 @@ class DSColorScheme {
     onPrimary: DSPalette.neutral0,
     secondary: DSPalette.blue50,
     onSecondary: DSPalette.blue950,
+    error: DSPalette.red600,
+    onError: DSPalette.red25,
   );
 
   /// Default color scheme for dark mode.
@@ -57,6 +63,8 @@ class DSColorScheme {
     onPrimary: DSPalette.blue1000,
     secondary: DSPalette.blue900,
     onSecondary: DSPalette.blue25,
+    error: DSPalette.red300,
+    onError: DSPalette.red1000,
   );
 
   /// Returns a copy of this color scheme with selected slots replaced.
@@ -71,6 +79,8 @@ class DSColorScheme {
     Color? onPrimary,
     Color? secondary,
     Color? onSecondary,
+    Color? error,
+    Color? onError,
   }) {
     return DSColorScheme(
       background: background ?? this.background,
@@ -83,6 +93,8 @@ class DSColorScheme {
       onPrimary: onPrimary ?? this.onPrimary,
       secondary: secondary ?? this.secondary,
       onSecondary: onSecondary ?? this.onSecondary,
+      error: error ?? this.error,
+      onError: onError ?? this.onError,
     );
   }
 
@@ -99,6 +111,8 @@ class DSColorScheme {
       onPrimary: Color.lerp(a.onPrimary, b.onPrimary, t)!,
       secondary: Color.lerp(a.secondary, b.secondary, t)!,
       onSecondary: Color.lerp(a.onSecondary, b.onSecondary, t)!,
+      error: Color.lerp(a.error, b.error, t)!,
+      onError: Color.lerp(a.onError, b.onError, t)!,
     );
   }
 }

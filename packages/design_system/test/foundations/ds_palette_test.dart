@@ -74,4 +74,20 @@ void main() {
   test('should return E6F2FF when token is blue25', () {
     expect(DSPalette.blue25, const Color(0xFFE6F2FF));
   });
+
+  test('should return B42318 when token is red600', () {
+    expect(DSPalette.red600, const Color(0xFFB42318));
+  });
+
+  test('should return F97066 when token is red300', () {
+    expect(DSPalette.red300, const Color(0xFFF97066));
+  });
+
+  test('should return FFFBFA when token is red25', () {
+    expect(DSPalette.red25, const Color(0xFFFFFBFA));
+  });
+
+  test('should return 3B0A06 when token is red1000', () {
+    expect(DSPalette.red1000, const Color(0xFF3B0A06));
+  });
 }

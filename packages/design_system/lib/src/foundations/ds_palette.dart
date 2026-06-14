@@ -55,4 +55,16 @@ abstract final class DSPalette {
 
   /// Near-white blue color used on dark blue surfaces.
   static const Color blue25 = Color(0xFFE6F2FF);
+
+  /// Strong red color used by error states in light mode.
+  static const Color red600 = Color(0xFFB42318);
+
+  /// Light red color used by error states in dark mode.
+  static const Color red300 = Color(0xFFF97066);
+
+  /// Near-white red color used on strong red surfaces.
+  static const Color red25 = Color(0xFFFFFBFA);
+
+  /// Deep red color used for text on light red surfaces.
+  static const Color red1000 = Color(0xFF3B0A06);
 }
