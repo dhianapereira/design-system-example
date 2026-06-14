@@ -20,6 +20,8 @@ import 'package:design_system_widgetbook/use_cases/dropdowns/ds_dropdown_use_cas
     as _design_system_widgetbook_use_cases_dropdowns_ds_dropdown_use_cases;
 import 'package:design_system_widgetbook/use_cases/selection_controls/ds_checkbox_use_cases.dart'
     as _design_system_widgetbook_use_cases_selection_controls_ds_checkbox_use_cases;
+import 'package:design_system_widgetbook/use_cases/selection_controls/ds_radio_use_cases.dart'
+    as _design_system_widgetbook_use_cases_selection_controls_ds_radio_use_cases;
 import 'package:design_system_widgetbook/use_cases/selection_controls/ds_switch_use_cases.dart'
     as _design_system_widgetbook_use_cases_selection_controls_ds_switch_use_cases;
 import 'package:design_system_widgetbook/use_cases/text/ds_text_use_cases.dart'
@@ -102,6 +104,17 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _design_system_widgetbook_use_cases_selection_controls_ds_checkbox_use_cases
                         .dsCheckboxPlaygroundUseCase,
+              )
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'DSRadioGroup',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Playground',
+                builder:
+                    _design_system_widgetbook_use_cases_selection_controls_ds_radio_use_cases
+                        .dsRadioGroupPlaygroundUseCase,
               )
             ],
           ),
