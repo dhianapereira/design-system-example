@@ -8,3 +8,6 @@ environment:
 workspace:
   - packages/design_system
   - apps/widgetbook
+
+dev_dependencies:
+  melos: ^7.8.2
