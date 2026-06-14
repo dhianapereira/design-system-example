@@ -16,6 +16,8 @@ import 'package:design_system_widgetbook/use_cases/buttons/ds_button_use_cases.d
     as _design_system_widgetbook_use_cases_buttons_ds_button_use_cases;
 import 'package:design_system_widgetbook/use_cases/buttons/ds_icon_button_use_cases.dart'
     as _design_system_widgetbook_use_cases_buttons_ds_icon_button_use_cases;
+import 'package:design_system_widgetbook/use_cases/cards/ds_card_use_cases.dart'
+    as _design_system_widgetbook_use_cases_cards_ds_card_use_cases;
 import 'package:design_system_widgetbook/use_cases/dropdowns/ds_dropdown_use_cases.dart'
     as _design_system_widgetbook_use_cases_dropdowns_ds_dropdown_use_cases;
 import 'package:design_system_widgetbook/use_cases/selection_controls/ds_checkbox_use_cases.dart'
@@ -75,6 +77,22 @@ final directories = <_widgetbook.WidgetbookNode>[
               )
             ],
           ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Cards',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'DSCard',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Playground',
+                builder:
+                    _design_system_widgetbook_use_cases_cards_ds_card_use_cases
+                        .dsCardPlaygroundUseCase,
+              )
+            ],
+          )
         ],
       ),
       _widgetbook.WidgetbookFolder(
