@@ -22,12 +22,6 @@ Widget dsCheckboxPlaygroundUseCase(BuildContext context) {
     initialValue: '',
   );
   final tristate = context.knobs.boolean(label: 'Tristate');
-  final valueState = context.knobs.object.dropdown<_CheckboxValueState>(
-    label: 'State',
-    options: tristate ? _CheckboxValueState.values : _nonTristateValueStates,
-    initialOption: _CheckboxValueState.unchecked,
-    labelBuilder: (state) => state.label,
-  );
   final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
   final size = context.knobs.object.dropdown<DSCheckboxSize>(
     label: 'Size',
@@ -36,52 +30,71 @@ Widget dsCheckboxPlaygroundUseCase(BuildContext context) {
     labelBuilder: (size) => size.name,
   );
 
-  return Center(
-    child: ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 320),
-      child: DSCheckbox(
-        value: valueState.resolveValue(tristate: tristate),
-        label: label,
-        helperText: helperText.isEmpty ? null : helperText,
-        errorText: errorText.isEmpty ? null : errorText,
-        enabled: enabled,
-        tristate: tristate,
-        size: size,
-        onChanged: enabled ? (_) {} : null,
-      ),
-    ),
+  return _CheckboxPlayground(
+    label: label,
+    helperText: helperText.isEmpty ? null : helperText,
+    errorText: errorText.isEmpty ? null : errorText,
+    tristate: tristate,
+    enabled: enabled,
+    size: size,
   );
 }
 
-enum _CheckboxValueState {
-  unchecked,
-  checked,
-  indeterminate,
+class _CheckboxPlayground extends StatefulWidget {
+  const _CheckboxPlayground({
+    required this.label,
+    required this.tristate,
+    required this.enabled,
+    required this.size,
+    this.helperText,
+    this.errorText,
+  });
+
+  final String label;
+  final String? helperText;
+  final String? errorText;
+  final bool tristate;
+  final bool enabled;
+  final DSCheckboxSize size;
+
+  @override
+  State<_CheckboxPlayground> createState() => _CheckboxPlaygroundState();
 }
 
-const _nonTristateValueStates = [
-  _CheckboxValueState.unchecked,
-  _CheckboxValueState.checked,
-];
+class _CheckboxPlaygroundState extends State<_CheckboxPlayground> {
+  bool? value = false;
 
-extension on _CheckboxValueState {
-  String get label {
-    return switch (this) {
-      _CheckboxValueState.unchecked => 'Unchecked',
-      _CheckboxValueState.checked => 'Checked',
-      _CheckboxValueState.indeterminate => 'Indeterminate',
-    };
+  @override
+  void didUpdateWidget(covariant _CheckboxPlayground oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!widget.tristate && value == null) {
+      value = false;
+    }
   }
 
-  bool? get value {
-    return switch (this) {
-      _CheckboxValueState.unchecked => false,
-      _CheckboxValueState.checked => true,
-      _CheckboxValueState.indeterminate => null,
-    };
-  }
-
-  bool? resolveValue({required bool tristate}) {
-    return tristate ? value : value ?? false;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 320),
+        child: DSCheckbox(
+          value: value,
+          label: widget.label,
+          helperText: widget.helperText,
+          errorText: widget.errorText,
+          enabled: widget.enabled,
+          tristate: widget.tristate,
+          size: widget.size,
+          onChanged: widget.enabled
+              ? (newValue) {
+                  setState(() {
+                    value = newValue;
+                  });
+                }
+              : null,
+        ),
+      ),
+    );
   }
 }
