@@ -10,6 +10,8 @@ export 'src/components/dropdowns/ds_dropdown/ds_dropdown.dart';
 export 'src/components/dropdowns/ds_dropdown/ds_dropdown_item.dart';
 export 'src/components/dropdowns/styles/ds_dropdown_size.dart';
 export 'src/components/dropdowns/styles/ds_dropdown_variant.dart';
+export 'src/components/selection_controls/ds_checkbox/ds_checkbox.dart';
+export 'src/components/selection_controls/styles/ds_checkbox_size.dart';
 export 'src/components/text/ds_text/ds_text.dart';
 export 'src/components/text/styles/ds_text_color.dart';
 export 'src/components/text/styles/ds_text_variant.dart';
