@@ -43,6 +43,14 @@ void main() {
     test('should return blue950 when color is onSecondary', () {
       expect(DSColorScheme.light.onSecondary, DSPalette.blue950);
     });
+
+    test('should return red600 when color is error', () {
+      expect(DSColorScheme.light.error, DSPalette.red600);
+    });
+
+    test('should return red25 when color is onError', () {
+      expect(DSColorScheme.light.onError, DSPalette.red25);
+    });
   });
 
   group('DSColorScheme.dark - ', () {
@@ -84,6 +92,14 @@ void main() {
 
     test('should return blue25 when color is onSecondary', () {
       expect(DSColorScheme.dark.onSecondary, DSPalette.blue25);
+    });
+
+    test('should return red300 when color is error', () {
+      expect(DSColorScheme.dark.error, DSPalette.red300);
+    });
+
+    test('should return red1000 when color is onError', () {
+      expect(DSColorScheme.dark.onError, DSPalette.red1000);
     });
   });
 
@@ -148,6 +164,17 @@ void main() {
     test('should replace onSecondary when onSecondary is provided', () {
       expect(
         DSColorScheme.light.copyWith(onSecondary: Colors.red).onSecondary,
+        Colors.red,
+      );
+    });
+
+    test('should replace error when error is provided', () {
+      expect(DSColorScheme.light.copyWith(error: Colors.red).error, Colors.red);
+    });
+
+    test('should replace onError when onError is provided', () {
+      expect(
+        DSColorScheme.light.copyWith(onError: Colors.red).onError,
         Colors.red,
       );
     });
